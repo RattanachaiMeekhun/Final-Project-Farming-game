@@ -1,4 +1,8 @@
-﻿public delegate void MovementDelegate(float xInput, float yInput, bool isWalking, bool isRunning, bool isIdle,
+﻿using System;
+using System.Collections.Generic;
+
+
+public delegate void MovementDelegate(float xInput, float yInput, bool isWalking, bool isRunning, bool isIdle,
     bool isCarrying, ToolEffect toolEffect,
     bool isUsingToolLeft, bool isUsingToolRight, bool isUsingToolDown, bool isUsingToolUp,
     bool isLiftingToolLeft, bool isLiftingToolRight, bool isLiftingToolUp, bool isLiftingToolDown,
@@ -7,6 +11,17 @@
     bool IdleLeft, bool IdleRight, bool IdleUP, bool IdleDown);
 
 public static class EventHandler{
+
+    public static event Action<InventoryLocation, List<InventoryItem>> InventoryUpdatedEvent;
+    
+    public static void CallInventoryUpdatedEvent(InventoryLocation inventoryLocation, List<InventoryItem> inventoryList)
+    {
+        if (InventoryUpdatedEvent != null)
+        {
+            InventoryUpdatedEvent(inventoryLocation, inventoryList);
+        }
+    }
+
     //MovementEvent
     public static event MovementDelegate MovementEvent;
 

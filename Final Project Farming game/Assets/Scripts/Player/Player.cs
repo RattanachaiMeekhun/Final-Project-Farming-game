@@ -29,10 +29,12 @@ public class Player : SingletonMonobehaviour<Player>
     private bool isPickingDown;
 
     private Rigidbody2D rigidbody2D;
-
+#pragma warning disable 414  
     private Direction playerdirection;
-
+#pragma warning restore 414
     private float movementSpeed;
+
+    private Camera mainCamera;
 
     private bool _playerInputIsDisable = false;
     public bool PlayerInputIsDisable { get => _playerInputIsDisable; set => _playerInputIsDisable = value; }
@@ -41,23 +43,31 @@ public class Player : SingletonMonobehaviour<Player>
     {
         base.Awake();
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        mainCamera = Camera.main;
     }
     private void Update()
     {
         #region Player Input
 
-        ResetAnimationTriggers();
+        if (!PlayerInputIsDisable)
+        {
+            ResetAnimationTriggers();
 
-        PlayerMovementInput();
+            PlayerMovementInput();
 
-        PlayerWalckingInput();
+            PlayerWalkingInput();
 
-        EventHandler.callMovementEvent(xInput, yInput, isWalking, isRunning, isCarrying, isIdle, toolEffect, isUsingToolLeft, isUsingToolDown, isUsingToolRight, isUsingToolUp,
-               isLiftingToolDown, isLiftingToolLeft, isLiftingToolRight, isLiftingToolUp, isPickingLeft, isPickingRight, isPickingUp, isPickingDown,
-               isSwingingToolLeft, isSwingingToolRight, isSwingingToolUp, isSwingingToolDown,
-               false, false, false, false);
+            EventHandler.callMovementEvent(xInput, yInput, isWalking, isRunning, isCarrying, isIdle, toolEffect, isUsingToolLeft, isUsingToolDown, isUsingToolRight, isUsingToolUp,
+                           isLiftingToolDown, isLiftingToolLeft, isLiftingToolRight, isLiftingToolUp, isPickingLeft, isPickingRight, isPickingUp, isPickingDown,
+                           isSwingingToolLeft, isSwingingToolRight, isSwingingToolUp, isSwingingToolDown,
+                           false, false, false, false);
+        }
 
-        #endregion
+        
+
+        #endregion Player Input
+
 
     }
 
@@ -73,7 +83,7 @@ public class Player : SingletonMonobehaviour<Player>
         rigidbody2D.MovePosition(rigidbody2D.position + move);
     }
 
-    private void PlayerWalckingInput()
+    private void PlayerWalkingInput()
     {
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
@@ -122,7 +132,7 @@ public class Player : SingletonMonobehaviour<Player>
             }
             else
             {
-                playerdirection = Direction.down;
+                playerdirection = Direction.up;
             }
 
         }else if (xInput == 0 && yInput ==0)
@@ -154,4 +164,41 @@ public class Player : SingletonMonobehaviour<Player>
 
 
     }
+
+    public void DisablePlayerInputAndResetMovement()
+    {
+        DisablePlayerInput();
+        ResetMovement();
+
+        EventHandler.callMovementEvent(xInput, yInput, isWalking, isRunning, isCarrying, isIdle, toolEffect, isUsingToolLeft, isUsingToolDown, isUsingToolRight, isUsingToolUp,
+                           isLiftingToolDown, isLiftingToolLeft, isLiftingToolRight, isLiftingToolUp, isPickingLeft, isPickingRight, isPickingUp, isPickingDown,
+                           isSwingingToolLeft, isSwingingToolRight, isSwingingToolUp, isSwingingToolDown,
+                           false, false, false, false);
+
+    }
+
+    private void ResetMovement()
+    {
+        xInput = 0f;
+        yInput = 0f;
+        isRunning = false;
+        isWalking = false;
+        isIdle = true;
+    }
+
+    public void DisablePlayerInput()
+    {
+        PlayerInputIsDisable = true;
+    }
+
+    public void EnablePlayerInput()
+    {
+        PlayerInputIsDisable = false;
+    }
+
+    public Vector3 GetPlayerViewportPosition()
+    {
+        return mainCamera.WorldToViewportPoint(transform.position);
+    }
+
 }
