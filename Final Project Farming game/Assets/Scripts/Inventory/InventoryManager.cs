@@ -104,6 +104,50 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
         // DebugPrintInventory(inventoryList);
     }
 
+    public void SwapInventoryItem(InventoryLocation inventoryLocation, int fromItem, int toItem)
+    {
+        if (fromItem < inventoryLists[(int)inventoryLocation].Count && toItem < inventoryLists[(int)inventoryLocation].Count
+            && fromItem != toItem && toItem >= 0)
+        {
+            InventoryItem fromInventoryItem = inventoryLists[(int)inventoryLocation][fromItem];
+            InventoryItem toInventoryItem = inventoryLists[(int)inventoryLocation][toItem];
+
+            inventoryLists[(int)inventoryLocation][fromItem] = toInventoryItem;
+            inventoryLists[(int)inventoryLocation][toItem] = fromInventoryItem;
+
+            EventHandler.CallInventoryUpdatedEvent(inventoryLocation , inventoryLists[(int)inventoryLocation]);
+        }
+    }
+
+    public string GetItemTypeDescription(ItemType itemType)
+    {
+        string itemTypeDescription;
+        switch (itemType)
+        {
+            case ItemType.Breaking_tool:
+                itemTypeDescription = Settings.BreakingTool;
+                break;
+            case ItemType.Chopping_tool:
+                itemTypeDescription = Settings.ChoppingTool;
+                break;
+            case ItemType.Collecting_tool:
+                itemTypeDescription = Settings.CollectingTool;
+                break;
+            case ItemType.Hoeing_tool:
+                itemTypeDescription = Settings.HoeingTool;
+                break;
+            case ItemType.Watering_tool:
+                itemTypeDescription = Settings.WateringTool;
+                break;
+            case ItemType.Reaping_tool:
+                itemTypeDescription = Settings.ReapingTool;
+                break;
+            default:
+                itemTypeDescription = itemType.ToString();
+                break;
+        }
+        return itemTypeDescription;
+    }
 
 
     private void AddItemAtPosition(List<InventoryItem> inventoryList, int itemCode)

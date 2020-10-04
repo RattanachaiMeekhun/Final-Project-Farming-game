@@ -37,3 +37,28 @@ public enum InventoryLocation
     chest,
     count
 }
+
+public enum SceneName
+{
+    Scene1_Farm,
+    Scene2_Field,
+    Scene3_Cabin
+}
+
+public enum GridBoolPropoty
+{
+    digable,
+    canDropItem,
+    canPlaceFurniture,
+    isPath,
+    isNpcObstacle
+}
+
+public enum Season
+{
+    Spring,
+    Summer,
+    Winter,
+    none,
+    count
+}

@@ -52,7 +52,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 76b67f58cf2a792438dacf663689a3c0, type: 3}
     - {fileID: 102900000, guid: 0192443a29c27e747a3eb28596eddb21, type: 3}
     - {fileID: 102900000, guid: 15ae8b62ae9660f4f87a9f2d47eacc97, type: 3}
-    totalSpriteSurfaceArea: 613438
+    totalSpriteSurfaceArea: 617538
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -1887,6 +1887,7 @@ SpriteAtlas:
   - {fileID: 5304089592871775321, guid: 3178799b764c8f14f821ba06edc51375, type: 3}
   - {fileID: 21300000, guid: 898d91cb190da4b479714f63ae8519e0, type: 3}
   - {fileID: 21300000, guid: 730e572c78cf0244ca0db36bb8f3af7f, type: 3}
+  - {fileID: 21300000, guid: 2442d97c6fefd2944b959da3b5dbb164, type: 3}
   - {fileID: 21300000, guid: 2a61f48c8f2dfed4da6f2f8e2485ee15, type: 3}
   - {fileID: 21300000, guid: 90499fac1706de44382ab07f7887e79e, type: 3}
   - {fileID: 21300000, guid: b2eff0cde9f776947b747c1a4cc96406, type: 3}
@@ -3794,6 +3795,7 @@ SpriteAtlas:
   - Cora_Portrait_2
   - GreenCursor
   - Acorn
+  - Money
   - Chair
   - Collision Tile Diagonal
   - InventoryHighlight

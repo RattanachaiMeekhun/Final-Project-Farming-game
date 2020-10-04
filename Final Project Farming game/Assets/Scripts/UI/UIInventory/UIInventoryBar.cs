@@ -11,6 +11,8 @@ public class UIInventoryBar : MonoBehaviour
 
     public GameObject inventoryBarDraggedItem;
 
+    [HideInInspector] public GameObject inventoryTextBoxGameObject;
+
     private RectTransform rectTransform;
 
     private bool _isInventoryBarPositionBottom = true;
@@ -88,6 +90,7 @@ public class UIInventoryBar : MonoBehaviour
 
     private void SwitchInventoryBarPOsition()
     {
+
         Vector3 playerViewPortPosition = Player.Instance.GetPlayerViewportPosition();
 
         if (playerViewPortPosition.y > 0.3f && IsInventoryBarPositionBottom == false)

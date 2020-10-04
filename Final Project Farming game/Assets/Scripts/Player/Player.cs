@@ -58,6 +58,8 @@ public class Player : SingletonMonobehaviour<Player>
 
             PlayerWalkingInput();
 
+            PlayerTestInput();
+
             EventHandler.callMovementEvent(xInput, yInput, isWalking, isRunning, isCarrying, isIdle, toolEffect, isUsingToolLeft, isUsingToolDown, isUsingToolRight, isUsingToolUp,
                            isLiftingToolDown, isLiftingToolLeft, isLiftingToolRight, isLiftingToolUp, isPickingLeft, isPickingRight, isPickingUp, isPickingDown,
                            isSwingingToolLeft, isSwingingToolRight, isSwingingToolUp, isSwingingToolDown,
@@ -163,6 +165,18 @@ public class Player : SingletonMonobehaviour<Player>
         isLiftingToolDown = false;
 
 
+    }
+
+    public void PlayerTestInput()
+    {
+        if (Input.GetKey(KeyCode.T))
+        {
+            TimeManager.Instance.TestAdvanceGameMinute();
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            TimeManager.Instance.TestAdvanceGameDay();
+        }
     }
 
     public void DisablePlayerInputAndResetMovement()

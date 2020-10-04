@@ -43,6 +43,15 @@ public static class Settings
     public static int IdleLeft;
     public static int IdleRight;
 
+    public const string HoeingTool = "Hoe";
+    public const string ChoppingTool = "Axe";
+    public const string BreakingTool = "Pickaxe";
+    public const string ReapingTool = "Scythe";
+    public const string WateringTool = "Watering Can";
+    public const string CollectingTool = "Basket";
+
+    public const float secondsPergameSecond = 0.012f;
+
     static Settings()
     {
         xInput = Animator.StringToHash("xInput");
